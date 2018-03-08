@@ -1,0 +1,109 @@
+# coding: utf-8
+# filename: cfg/logger.yml
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(filename)s - [line:%(lineno)d]'
+  consolefmt:
+    format: '%(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: consolefmt
+    level   : WARNING
+    stream  : ext://sys.stdout
+  gdhpvfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/gdhpv.log
+    backupCount: 100
+  spiderfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/spider.log
+    backupCount: 100
+  commonsfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/enter.log
+    backupCount: 100
+  opencaifile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/opencai.log
+    backupCount: 100
+  threadfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/thread.log
+    backupCount: 100
+  mainfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/main.log
+    backupCount: 100
+  groupfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/group.log
+    backupCount: 100
+  noticefile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/notice.log
+    backupCount: 100
+  
+loggers:
+  gdhpvparser:
+    level: DEBUG
+    handlers: [console,gdhpvfile]
+    propagate: no
+  commonsparser:
+    level: DEBUG
+    handlers: [ console,commonsfile]
+    propagate: no
+  opencaiparser:
+    level: DEBUG
+    handlers: [console, opencaifile]
+    propagate: no
+  spiderparser:
+    level: DEBUG
+    handlers: [console, spiderfile]
+    propagate: no
+  threadparser:
+    level: DEBUG
+    handlers: [console, threadfile]
+    propagate: no
+  mainparser:
+    level: DEBUG
+    handlers: [console, mainfile]
+    propagate: no
+  groupparser:
+    level: DEBUG
+    handlers: [console, groupfile]
+    propagate: no
+  noticeparser:
+    level: DEBUG
+    handlers: [console, noticefile]
+    propagate: no
+ 
+  
+root:
+  level: DEBUG
+  handlers: [console,commonsfile]
