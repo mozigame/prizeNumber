@@ -40,6 +40,7 @@ class prizeNotice():
             self._notice_to_draw_server(item)
             
     def _notice_to_draw_server(self,item):
+        logger.info('get recent item. code: '+ item.code + ',issue:' + item.issue)
         current_item=spiderRecord4DB.get_recent_item(item.code,item.issue)
         is_same=True
         numbers=''
@@ -60,7 +61,7 @@ class prizeNotice():
         logger.info('server url :'+server_url)
         try:
             res=requests.post(url=server_url,headers=headers,timeout=300)
-            logger.info("response :"+res.text)
+            logger.info("response :"+res.text + ",url:" + server_url)
         except Exception as e:
             logger.warn('notice '+'   error for :'+" error:"+str(e))
             _group_notice = groupNotice()

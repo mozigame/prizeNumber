@@ -49,15 +49,18 @@ class SpiderThread(Thread):
                     logger.info('Thread '+self.name+'   get  item :'+" :49") 
                     items=m.handler(self.name,current_prize_number)
                     logger.info('Thread '+self.name+'   get  item :'+" :51") 
-                    #logger.info('Thread '+self.name+'   get  item :'+" :"+''.join(items)) 
+                    logger.info('Thread '+self.name+'   get  item :'+" :"+''.join(items))
                     if(items and len(items)>0):
                         spiderRecord4DB.batchInsert(items)
-                        logger.info('Thread '+self.name+'   get  item :'+" :55") 
+                        logger.info('Thread '+self.name+'   batchinsert :'+" :"+''.join(items))
+                        logger.info('Thread '+self.name+'   get  item :'+" :55")
                         spiderRecord4DB.batchUpdate(items)
-                        logger.info('Thread '+self.name+'   get  item :'+" :57") 
+                        logger.info('Thread '+self.name+'   batchupdate :'+" :"+''.join(items))
+                        logger.info('Thread '+self.name+'   get  item :'+" :57")
                         
                         notice = prizeNotice('prize_notice_server')
-                        notice.notice_to_draw_server(items) 
+                        notice.notice_to_draw_server(items)
+                        logger.info('Thread '+self.name+'   noticetoserver :'+" :"+''.join(items))
                         logger.info('Thread '+self.name+'   get  item :'+" :61") 
                         
                 except Exception as e:
