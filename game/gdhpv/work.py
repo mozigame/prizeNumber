@@ -69,12 +69,16 @@ def handler(job_name='',prizeItem=[]):
                             item.issue=j['numeroNo'].replace('-','')[2:]
                         logger.info("new issue :"+item.issue)
                         
-                        if ('ah_k3'==url[0] or 'sh_k3'==url[0]  or 'js_k3'==url[0] or 'cq_ssc'==url[0] or 'tj_ssc'==url[0] or 'xj_ssc'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0] or 'pc_dd'==url[0]):
+                        if ('ah_k3'==url[0] or 'sh_k3'==url[0]  or 'js_k3'==url[0] or 'cq_ssc'==url[0] or 'tj_ssc'==url[0] or 'xj_ssc'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0]):
                             
                             for t in j['winNo']:
                                 numbers=numbers+','+t
                         
                             item.numbers=numbers[1:]
+                        elif ('pc_dd'==url[0]):
+                            numbersSpilt=j['winNo'].split(',')
+                            tema=int(numbersSpilt[0])+int(numbersSpilt[1])+int(numbersSpilt[2])
+                            item.numbers=j['winNo'] + ',' + str(tema)
                         else:
                             item.numbers=j['winNo']
                         logger.info("numbers :"+item.numbers)
