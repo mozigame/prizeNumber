@@ -126,7 +126,7 @@ def handler(job_name='',prizeItem=[]):
                                 logger.info(item_pc.printContent())
                                 items.append(item_pc)
 
-items.sort(key=lambda item:item.issue, reverse=False)
+        items.sort(key=lambda item:item.issue, reverse=False)
         
         return items
         
