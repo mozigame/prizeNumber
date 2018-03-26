@@ -6,8 +6,8 @@ Created on 2017-04-04
 '''
 import configparser
 import codecs 
-local='online'
-#local='test'
+#local='online'
+local='test'
 #local='local'
 
 def getCommonValue(siteName,part):
