@@ -19,6 +19,13 @@ handlers:
     level   : INFO
     filename: log/gdhpv.log
     backupCount: 100
+  bccaifile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/bccai.log
+    backupCount: 100
   spiderfile:
     class : logging.handlers.TimedRotatingFileHandler
     formatter: simple
@@ -73,6 +80,10 @@ loggers:
   gdhpvparser:
     level: DEBUG
     handlers: [console,gdhpvfile]
+    propagate: no
+  bccaiparser:
+    level: DEBUG
+    handlers: [console,bccaifile]
     propagate: no
   commonsparser:
     level: DEBUG
