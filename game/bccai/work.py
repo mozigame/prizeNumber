@@ -32,27 +32,28 @@ def handler(job_name='',prizeItem=[]):
                 logger.info('res :'+str(d))
                 logger.info('current issue is :'+str(_current_item4api.get(url[0])))
                 d=json.loads(res.text)
-                if d["Code"]==0:
-                    for j in d["Data"]:
-                        if(_current_item4api.get(url[0])==None or int(j['ResultNum'])>int(_current_item4api.get(url[0]))):
+                if d["code"]==0:
+                    for j in d["data"]:
+                        if(_current_item4api.get(url[0])==None or int(j['resultNum'])>int(_current_item4api.get(url[0]))):
                             item =PrizeNumberItem()
-                            item.issue=j['ResultNum']
+                            item.issue=j['resultNum']
                             logger.info("new issue :"+item.issue)
-                            item.numbers=j['Result']
-                            logger.info("issue:" + item.issue + ",numbers :"+item.numbers)
-                            item.ptime=j['TimeFormat']
-                            item.pdate=datetime.datetime.utcnow().strftime(date_format)
-                            item.source=url[1]
-                            item.code=url[0]
-                            item.update_time=int(round(time.time() * 1000))
-                            item.name=configureRead.getJobValue(job_name,'name')
-                            item.priority=configureRead.getJobValue(job_name,'priority')
-                            item.job_name=job_name
-                            item.status=1
-                            logger.info("item content :")
-                            logger.info(item.printContent())
-                            items.append(item)
-                            logger.info('end')
+                            if(j['result']!=None and not j['result'].strip()):
+                                item.numbers=j['result']
+                                logger.info("issue:" + item.issue + ",numbers :"+item.numbers)
+                                item.ptime=j['timeFormat']
+                                item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                                item.source=url[1]
+                                item.code=url[0]
+                                item.update_time=int(round(time.time() * 1000))
+                                item.name=configureRead.getJobValue(job_name,'name')
+                                item.priority=configureRead.getJobValue(job_name,'priority')
+                                item.job_name=job_name
+                                item.status=1
+                                logger.info("item content :")
+                                logger.info(item.printContent())
+                                items.append(item)
+                                logger.info('end')
         items.sort(key=lambda item:item.issue, reverse=False)
         return items
         
