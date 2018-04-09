@@ -29,7 +29,7 @@ def handler(job_name='',prizeItem=[]):
             siteUrl=url[1]
             res=requests.get(url=siteUrl,headers=headers,timeout=300)
             if res:
-                logger.info('res :'+str(d))
+                logger.info('res :'+str(res))
                 logger.info('current issue is :'+str(_current_item4api.get(url[0])))
                 d=json.loads(res.text)
                 if d["code"]==0:
