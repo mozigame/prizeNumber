@@ -37,8 +37,7 @@ def handler(job_name='',prizeItem=[]):
                         if(_current_item4api.get(url[0])==None or int(j['resultNum'])>int(_current_item4api.get(url[0]))):
                             item =PrizeNumberItem()
                             item.issue=j['resultNum']
-                            logger.info("new issue :"+item.issue)
-                            if(j['result']!=None and not j['result'].strip()):
+                            if(j['result']!=None):
                                 item.numbers=j['result']
                                 logger.info("issue:" + item.issue + ",numbers :"+item.numbers)
                                 item.ptime=j['timeFormat']
