@@ -34,6 +34,7 @@ def handler(job_name='',prizeItem=[]):
                 d=json.loads(res.text)
                 if d["code"]==0:
                     for j in d["data"]:
+                        j['resultNum']=j['resultNum'][2:-2]
                         if(_current_item4api.get(url[0])==None or int(j['resultNum'])>int(_current_item4api.get(url[0]))):
                             item =PrizeNumberItem()
                             item.issue=j['resultNum']
