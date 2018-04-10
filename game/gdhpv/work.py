@@ -83,7 +83,7 @@ def handler(job_name='',prizeItem=[]):
                             item.numbers=j['winNo']
                         logger.info("numbers :"+item.numbers)
                         item.ptime=j['winTime']
-                        item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                        item.pdate=datetime.datetime.now().strftime(date_format)
                         item.source=url[1]
                         item.code=url[0]                      
                         item.update_time=int(round(time.time() * 1000))

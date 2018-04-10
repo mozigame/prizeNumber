@@ -54,7 +54,7 @@ def handler(job_name='',prizeItem=[]):
                     item.pdate=t_time
                     item.source=configureRead.getJobValue(job_name,'site_url')
                     item.code=configureRead.getJobValue(job_name,'code')
-                    item.update_time=datetime.datetime.utcnow().strftime(UTC_FORMAT)
+                    item.update_time=datetime.datetime.now().strftime(UTC_FORMAT)
                     item.name=configureRead.getJobValue(job_name,'name')
                     item.priority=configureRead.getJobValue(job_name,'priority')
                     item.job_name=job_name

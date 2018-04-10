@@ -34,15 +34,15 @@ def handler(job_name='',prizeItem=[]):
                 d=json.loads(res.text)
                 if d["code"]==0:
                     for j in d["data"]:
-                        j['resultNum']=j['resultNum'][2:-2]
-                        if(_current_item4api.get(url[0])==None or int(j['resultNum'])>int(_current_item4api.get(url[0]))):
+                        j['resultNum']=j['resultNum']
+                        if(_current_item4api.get(url[0])==None or int(j['resultNum'][2:-2])>int(_current_item4api.get(url[0]))):
                             item =PrizeNumberItem()
-                            item.issue=j['resultNum']
+                            item.issue=j['resultNum'][2:-2]
                             if(j['result']!=''):
                                 item.numbers=j['result']
                                 logger.info("issue:" + item.issue + ",numbers :"+item.numbers)
                                 item.ptime=j['timeFormat']
-                                item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                                item.pdate=datetime.datetime.now().strftime(date_format)
                                 item.source=url[1]
                                 item.code=url[0]
                                 item.update_time=int(round(time.time() * 1000))

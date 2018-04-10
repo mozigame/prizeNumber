@@ -63,7 +63,7 @@ def handler(job_name='',prizeItem=[]):
                 item.numbers=numbers
                 if len(a[1]) > 4:
                     item.ptime=a[1][:-3]
-                item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                item.pdate=datetime.datetime.now().strftime(date_format)
                 item.source=configureRead.getJobValue(job_name,'site_url')
                 item.code=configureRead.getJobValue(job_name,'code')
                 item.update_time=int(round(time.time() * 1000))

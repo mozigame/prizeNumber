@@ -39,10 +39,10 @@ def handler(job_name='',prizeItem=[]):
                 item.issue=a[0]
                 item.numbers=numbers[1:]
                 item.ptime=a[1][:-3]
-                item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                item.pdate=datetime.datetime.now().strftime(date_format)
                 item.source=configureRead.getJobValue(job_name,'site_url')
                 item.code=configureRead.getJobValue(job_name,'code')
-                item.update_time=datetime.datetime.utcnow().strftime(UTC_FORMAT)
+                item.update_time=datetime.datetime.now().strftime(UTC_FORMAT)
                 item.name=configureRead.getJobValue(job_name,'name')
                 item.job_name=job_name
                 item.status=1
