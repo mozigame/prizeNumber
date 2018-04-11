@@ -58,7 +58,7 @@ def handler(job_name='',prizeItem=[]):
                 logger.info("new issue :"+item.issue)
                 item.numbers=numbers
                 
-                item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                item.pdate=datetime.datetime.now().strftime(date_format)
                 item.source=configureRead.getJobValue(job_name,'site_url')
                 item.code=configureRead.getJobValue(job_name,'code')
                 item.update_time=int(round(time.time() * 1000))

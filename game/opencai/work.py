@@ -83,7 +83,7 @@ def handler(job_name='',prizeItem=[]):
                             item.numbers=j['opencode'].replace('+',',')
                         logger.info("origin:" + j['opencode'] + ",numbers :"+item.numbers)
                         item.ptime=j['opentime']
-                        item.pdate=datetime.datetime.utcnow().strftime(date_format)
+                        item.pdate=datetime.datetime.now().strftime(date_format)
                         item.source=url[1]
                         item.code=url[0]                      
                         item.update_time=int(round(time.time() * 1000))
@@ -98,7 +98,34 @@ def handler(job_name='',prizeItem=[]):
                         items.append(item)
                         
                         logger.info('end')
-        
+
+                        if('bj_ssc'==url[0]):
+                            numbers=j['opencode'][:-3]
+                            numbersSpilt=numbers.split(',')
+                            if len(numbersSpilt) == 20:
+                                first=(int(numbersSpilt[0])+int(numbersSpilt[1])+int(numbersSpilt[2])+int(numbersSpilt[3])+int(numbersSpilt[4])+int(numbersSpilt[5]))%10
+                                second=(int(numbersSpilt[6])+int(numbersSpilt[7])+int(numbersSpilt[8])+int(numbersSpilt[9])+int(numbersSpilt[10])+int(numbersSpilt[11]))%10
+                                third=(int(numbersSpilt[12])+int(numbersSpilt[13])+int(numbersSpilt[14])+int(numbersSpilt[15])+int(numbersSpilt[16])+int(numbersSpilt[17]))%10
+                                forth=first+second+third
+                                numbers = str(first) + ',' + str(second) + ',' + str(third) + ',' + str(forth)
+                                item_pc =PrizeNumberItem()
+                                item_pc.issue=item.issue
+                                logger.info("new issue :"+item_pc.issue)
+                                item_pc.numbers=numbers
+                                logger.info("origin:" + j['opencode'] + ",numbers :"+item_pc.numbers)
+                                item_pc.ptime=item.ptime
+                                item_pc.pdate=item.pdate
+                                item_pc.source=item.source
+                                item_pc.code='pc_dd'
+                                item_pc.update_time=item.update_time
+                                item_pc.name='pc蛋蛋'
+                                item_pc.priority=item.priority
+                                item_pc.job_name=item.job_name
+                                item_pc.status=1
+                                logger.info("item_pc content :")
+                                logger.info(item_pc.printContent())
+                                items.append(item_pc)
+
         items.sort(key=lambda item:item.issue, reverse=False)
         
         return items
