@@ -118,7 +118,7 @@ def handler(job_name='',prizeItem=[]):
                                 item_pc.source=item.source
                                 item_pc.code='pc_dd'
                                 item_pc.update_time=item.update_time
-                                item_pc.name='pc蛋蛋'
+                                item_pc.name='幸运28'
                                 item_pc.priority=item.priority
                                 item_pc.job_name=item.job_name
                                 item_pc.status=1
