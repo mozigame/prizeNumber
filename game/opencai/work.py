@@ -26,50 +26,30 @@ def handler(job_name='',prizeItem=[]):
             _current_item4api[item[4]]=item[2]
         else:
             _current_item4api[item[4]]='20'+str(item[2])
-        
-        
-    
-    #print(_current_item4api)
-        
-    
-    
-    
-
-
 
     try:
         for url in configureRead.getApiNode(job_name):
             logger.info("code :"+url[0]+ " ,url:"+url[1]) 
-            
-        
-        
+
             siteUrl=url[1]
             res=requests.get(url=siteUrl,headers=headers,timeout=300)
             if res:
                 d=json.loads(res.text)
-        #json.dumps(data2,sort_keys=True)
-        #print(context[0])
-        
-        
-                #print(d)
                 logger.info('res :'+str(d))
                 logger.info('current issue is :'+str(_current_item4api.get(url[0])))
                 for j in d["data"]:
-                
-                    
                     if(_current_item4api.get(url[0])==None or int(j['expect'])>int(_current_item4api.get(url[0]))):
-                    
-                        
-                        #print(j['opentimestamp'])
-                    
                         item =PrizeNumberItem()
-                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]  or 'luckship'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0]):
+                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]  or 'luckship'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0] or 'az_ssc'==url[0]):
                             item.issue=j['expect']
                         else:
                             item.issue=j['expect'][2:]
                         logger.info("new issue :"+item.issue)
-                        if('bj_ssc'==url[0] or 'tw_ssc'==url[0]):
-                            numbers=j['opencode'][:-3]
+                        if('bj_ssc'==url[0] or 'tw_ssc'==url[0] or 'az_ssc'==url[0]):
+                            if('az_ssc'==url[0]):
+                                numbers=j['opencode']
+                            else:
+                                numbers=j['opencode'][:-3]
                             numbersSpilt=numbers.split(',')
                             if len(numbersSpilt) == 20:
                                 first=(int(numbersSpilt[0])+int(numbersSpilt[1])+int(numbersSpilt[2])+int(numbersSpilt[3]))%10
