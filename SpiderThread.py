@@ -70,7 +70,7 @@ class SpiderThread(Thread):
                 finally:
                     if fp:
                         fp.close()
-                time.sleep(int(configureRead.getJobValue(self.name, 'sleepTimeInThread')))
+                time.sleep(float(configureRead.getJobValue(self.name, 'sleepTimeInThread')))
             
 
 
