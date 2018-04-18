@@ -45,7 +45,7 @@ def batchInsert(items):
 def batchUpdate(items):
     
     db = MySQLDB('lottery')
-    sql='update lp_prize_number_item set numbers=%s,update_time=%s,spride_number_catch_time=%s where code=%s and issue_alias=%s'
+    sql='update lp_prize_number_item set numbers=%s,update_time=%s,spride_number_catch_time=%s where code=%s and issue_alias=%s and status in (0,6) and prize_status=0'
     tmpItem=[]
    
     for e in items:
