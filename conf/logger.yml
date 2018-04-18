@@ -24,7 +24,14 @@ handlers:
     formatter: simple
     when: midnight
     level   : INFO
-    filename: log/bccai.log
+    filename: log/bcai.log
+    backupCount: 100
+  manycaifile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/manycai.log
     backupCount: 100
   spiderfile:
     class : logging.handlers.TimedRotatingFileHandler
@@ -84,6 +91,10 @@ loggers:
   bccaiparser:
     level: DEBUG
     handlers: [console,bccaifile]
+    propagate: no
+  manycaiparser:
+    level: DEBUG
+    handlers: [console,manycaifile]
     propagate: no
   commonsparser:
     level: DEBUG
