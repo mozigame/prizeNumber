@@ -35,7 +35,7 @@ def handler(job_name='',prizeItem=[]):
                 logger.info('res :'+str(d))
                 for j in d:
                     if('xg_lhc'==url[0]):
-                        j['issue']='20'+j['issue'].('\/','')
+                        j['issue']='20'+j['issue'].replace('\/','')
                     elif('qq_ffc'==url[0]):
                         j['issue']=j['opendate'].replace('-','').replace(' ','').replace(':','')[2:-2]
                     if(_current_item4api.get(url[0])==None or int(j['issue'])>int(_current_item4api.get(url[0]))):
