@@ -22,7 +22,7 @@ def handler(job_name='',prizeItem=[]):
     _current_item4api={}
     for item in _list4api:
         #print(item[2])
-        if('bj_pk10'==item[4]  or 'xg_lhc'==item[4] or 'luckship'==item[4] or 'bj_ssc'==item[4] or 'tw_ssc'==item[4]):
+        if('bj_pk10'==item[4]  or 'xg_lhc'==item[4] or 'luckship'==item[4] or 'bj_ssc'==item[4] or 'tw_ssc'==item[4] or 'az_ssc'==item[4]):
             _current_item4api[item[4]]=item[2]
         else:
             _current_item4api[item[4]]='20'+str(item[2])
@@ -30,17 +30,16 @@ def handler(job_name='',prizeItem=[]):
     try:
         for url in configureRead.getApiNode(job_name):
             logger.info("code :"+url[0]+ " ,url:"+url[1]) 
-
             siteUrl=url[1]
             res=requests.get(url=siteUrl,headers=headers,timeout=300)
             if res:
                 d=json.loads(res.text)
                 logger.info('res :'+str(d))
-                logger.info('current issue is :'+str(_current_item4api.get(url[0])))
+                logger.info()
                 for j in d["data"]:
                     if('az_ssc'==url[0]):
                         j['expect']=str(j['opentime'][0:10].replace('-','')) + str(j['expect'])
-                        logger.info('issue is'+ str(j['expect']))
+                        logger.info('issue is:'+ str(j['expect']) + ',current issue is :'+str(_current_item4api.get(url[0])))
                     if(_current_item4api.get(url[0])==None or int(j['expect'])>int(_current_item4api.get(url[0]))):
                         item =PrizeNumberItem()
                         if('bj_pk10'==url[0] or 'xg_lhc'==url[0]  or 'luckship'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0] or 'az_ssc'==url[0]):
