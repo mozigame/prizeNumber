@@ -29,13 +29,12 @@ def handler(job_name='',prizeItem=[]):
 
     try:
         for url in configureRead.getApiNode(job_name):
-            logger.info("code :"+url[0]+ " ,url:"+url[1]) 
+            logger.info("code :"+url[0]+ " ,url:"+url[1])
             siteUrl=url[1]
             res=requests.get(url=siteUrl,headers=headers,timeout=300)
             if res:
                 d=json.loads(res.text)
                 logger.info('res :'+str(d))
-                logger.info()
                 for j in d["data"]:
                     if('az_ssc'==url[0]):
                         j['expect']=str(j['opentime'][0:10].replace('-','')) + str(j['expect'])
