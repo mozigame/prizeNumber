@@ -38,12 +38,13 @@ def handler(job_name='',prizeItem=[]):
                 logger.info('res :'+str(d))
                 logger.info('current issue is :'+str(_current_item4api.get(url[0])))
                 for j in d["data"]:
+                    if('az_ssc'==url[0]):
+                        j['expect']=str(j['opentime'][0:10].replace('-','')) + str(j['expect'])
+                        logger.info('issue is': + str(j['expect']))
                     if(_current_item4api.get(url[0])==None or int(j['expect'])>int(_current_item4api.get(url[0]))):
                         item =PrizeNumberItem()
-                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]  or 'luckship'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0]):
+                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]  or 'luckship'==url[0] or 'bj_ssc'==url[0] or 'tw_ssc'==url[0] or 'az_ssc'==url[0]):
                             item.issue=j['expect']
-                        elif('az_ssc'==url[0]):
-                            item.issue=str(j['opentime'][0:10].replace('-','')) + str(j['expect'])
                         else:
                             item.issue=j['expect'][2:]
                         logger.info("new issue :"+item.issue)
