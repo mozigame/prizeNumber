@@ -20,7 +20,7 @@ def handler(job_name='',prizeItem=[]):
     
     _current_item4api={}
     for item in _list4api:
-        if('bj_pk10'==item[4] or 'qq_ffc'==item[4]):
+        if('bj_pk10'==item[4] or 'qq_ffc'==item[4] or 'js_k3'==item[4] or 'gd_11x5'==item[4] or 'sd_11x5'==item[4]):
             _current_item4api[item[4]]=item[2]
         else:
             _current_item4api[item[4]]='20'+str(item[2])
@@ -40,12 +40,12 @@ def handler(job_name='',prizeItem=[]):
                         j['issue']=j['opendate'].replace('-','').replace(' ','').replace(':','')[2:-2]
                     if(_current_item4api.get(url[0])==None or int(j['issue'])>int(_current_item4api.get(url[0]))):
                         item =PrizeNumberItem()
-                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0] or 'qq_ffc'==url[0]):
+                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0] or 'qq_ffc'==url[0] or 'js_k3'==url[0] or 'gd_11x5'==url[0] or 'sd_11x5'==url[0]):
                             item.issue=j['issue']
                         else:
                             item.issue=j['issue'][2:]
                         logger.info("new issue :"+item.issue)
-                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]):
+                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0] or 'gd_11x5'==url[0] or 'sd_11x5'==url[0]):
                             if('xg_lhc'==url[0]):
                                 j['code']=j['code'].replace('+',',')
                             spilts=j['code'].split(",")
