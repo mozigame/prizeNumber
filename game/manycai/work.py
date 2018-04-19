@@ -20,7 +20,7 @@ def handler(job_name='',prizeItem=[]):
     
     _current_item4api={}
     for item in _list4api:
-        if('bj_pk10'==item[4]):
+        if('bj_pk10'==item[4] or 'qq_ffc'==item[4]):
             _current_item4api[item[4]]=item[2]
         else:
             _current_item4api[item[4]]='20'+str(item[2])
@@ -47,6 +47,12 @@ def handler(job_name='',prizeItem=[]):
                         logger.info("new issue :"+item.issue)
                         if('xg_lhc'==url[0]):
                             item.numbers=j['code'].replace('+',',')
+                        elif('bj_pk10'==url[0]):
+                            spilts=j['code'].split(",")
+                            for i in range(len(spilts)):
+                                if(int(spilts[i])<10):
+                                    spilts[i]='0'+spilts[i]
+                            item.numbers=','.join(spilts)
                         else:
                             item.numbers=j['code']
                         logger.info("origin:" + j['code'] + ",numbers :"+item.numbers)
