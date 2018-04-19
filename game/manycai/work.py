@@ -45,9 +45,9 @@ def handler(job_name='',prizeItem=[]):
                         else:
                             item.issue=j['issue'][2:]
                         logger.info("new issue :"+item.issue)
-                        if('xg_lhc'==url[0]):
-                            item.numbers=j['code'].replace('+',',')
-                        elif('bj_pk10'==url[0]):
+                        if('bj_pk10'==url[0] or 'xg_lhc'==url[0]):
+                            if('xg_lhc'==url[0]):
+                                j['code']=j['code'].replace('+',',')
                             spilts=j['code'].split(",")
                             for i in range(len(spilts)):
                                 if(int(spilts[i])<10):
