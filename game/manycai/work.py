@@ -38,7 +38,9 @@ def handler(job_name='',prizeItem=[]):
                         j['issue']='20'+j['issue'].replace('/','')
                     elif('qq_ffc'==url[0]):
                         j['issue']=j['opendate'].replace('-','').replace(' ','').replace(':','')[2:-2]
-                    elif('gd_11x5'==url[0] or 'jx_11x5'==url[0]):
+                    elif('gd_11x5'==url[0]):
+                        j['issue']=j['issue'][:6]+j['issue'][7:]
+                    elif('jx_11x5'==url[0]):
                         j['issue']=j['issue'][:8]+j['issue'][9:]
                     elif('tj_ssc'==url[0]):
                         last=j['issue'][8:]
