@@ -38,7 +38,12 @@ if __name__ == "__main__":
             
             if('gdhpv'==job):
                 continue
-           
+
+            if('manycai'==job):
+                continue
+
+            if('bccai'==job):
+                continue
             #execute(job)
             
             if(len(threads)==0):
