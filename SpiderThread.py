@@ -54,7 +54,7 @@ class SpiderThread(Thread):
                         spiderRecord4DB.batchInsert(items)
                         logger.info('Thread '+self.name+'   batchinsert :'+" :"+str(items))
                         logger.info('Thread '+self.name+'   get  item :'+" :55")
-                        spiderRecord4DB.batchUpdate(items)
+                        #spiderRecord4DB.batchUpdate(items)
                         logger.info('Thread '+self.name+'   batchupdate :'+" :"+str(items))
                         logger.info('Thread '+self.name+'   get  item :'+" :57")
                         
@@ -70,7 +70,7 @@ class SpiderThread(Thread):
                 finally:
                     if fp:
                         fp.close()
-                time.sleep(int(configureRead.getJobValue(self.name, 'sleepTimeInThread')))
+                time.sleep(float(configureRead.getJobValue(self.name, 'sleepTimeInThread')))
             
 
 
